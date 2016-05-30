@@ -1,0 +1,7 @@
+import sys
+try:
+  print 5 / 0
+except Exception as e:
+  print "exceptions :",type(e),e
+
+print "but life goes on"

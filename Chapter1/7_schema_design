@@ -1,0 +1,5 @@
+#Intro to Schema Design
+ - mongodb doc is 16MB MAX
+ - POSTS :
+    - tags : [] :
+    - comments: [] as are related.

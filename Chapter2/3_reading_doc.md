@@ -1,0 +1,35 @@
+#Reading Docs : query language
+ - db.movieDetails.find({rated : "PG-13"}).count() : to find the data in movieDetails collections
+ - db.movieDetails.find({rated : "PG-13",year:2009}).count() : to find the data in movieDetails collections with multiple query
+ - db.movieDetails.find({"address.district":"Pune"}) : to get data using nested filed.
+    - using dot notation
+    - put query in " "
+ - Equality Matches on Arrays
+   - On the Entire Array
+   - Based on Any Element
+   - Based on Specific Element
+   - More Complex Matches using Operators
+ - db.movieDetails.find({"writers":["sagar","amol"]}).count()
+   - it checks the order and element present in array..!
+ - if we want to match any one element in array we can use
+   - db.movieDetails.find({"actors":"Jeff Bridges"});
+ - to find the name which occur first in array
+   - db.movieDetails.find({"actors.0":"Jeff Bridges"}).pretty()
+
+ - Cursors
+  - find method returns a cursor
+  - it automatically iterate around for 20 times.
+  - mongodb server returns data in batches
+  - batch size will not go beyond 1 MB or BSON Doc size
+  - type "it" to iterate
+    - var c = db.movieDetails.find()
+    - var doc = function(){return c.hasNext() ? c.next():null;}
+    - c.objsLeftInBatch();
+    - iterate using doc();
+
+ - Projections
+    - reduce the data returning from find()
+    - its second argument to find()
+    - projection : include only those field which are specified.
+    - db.movieDetails.find({rated:"PG"},{title:1}).pretty()
+    - db.movieDetails.find({rated:"PG"},{title:1,_id:0}).pretty()
